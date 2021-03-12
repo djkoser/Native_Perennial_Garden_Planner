@@ -1,5 +1,0 @@
-const myList=[];
-
-module.exports = {
-
-};
