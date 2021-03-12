@@ -11,7 +11,8 @@ export default class SearchBox extends Component {
       commonName:"",
       sun:"",
       bloomTime:"",
-      matureHeight:0,
+      minHeight:0,
+      maxHeight:0,
       moisture:"",
       plantList:[],
       userAddedCount:0

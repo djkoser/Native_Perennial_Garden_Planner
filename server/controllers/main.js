@@ -23,9 +23,16 @@ const matchText = (req,queryName,keyName) => {
   });
 }
 
-const lessThan = (req) => {
+//Query minHeight before maxHeight!!
+const between = (req) => {
   return masterPlantList.filter((plt) => {
-    return plt.height <= Number.parseInt(req.query.height);
+    if (req.query.maxHeight && req.query.minHeight) {
+      return plt.height <= Number.parseInt(req.query.maxHeight) && plt.height >= Number.parseInt(req.query.minHeight);
+    } else if (req.query.maxHeight && !req.query.minHeight) {
+      return plt.height <= Number.parseInt(req.query.maxHeight);
+    } else if (!req.query.maxHeight && req.query.minHeight) {
+      return plt.height >= Number.parseInt(req.query.minHeight);
+    };
   });
 }
 
@@ -37,10 +44,10 @@ module.exports = {
     } else {res.status(406).send(myList);}; 
   },
   read: (req,res)=> {
-    if (req.params.myList) {
+    if (req.params.myList==="true" && req.params.mainList==="false") {
       res.status(200).send(myList);
     };
-    if (req.params.mainList) {
+    if (req.params.mainList==="true" && req.params.myList==="false") {
       let result = []; 
       if (req.query.botName) {
         result = [...filterText(req,"botName","botanical_name")]; 
@@ -54,20 +61,21 @@ module.exports = {
       if (req.query.blmTime) {
         result = [...matchText(req,"blmTime","bloom_time")];
       };
-      if (req.query.height) {
-        result = [...lessThan(req)]; 
+      if (req.query.maxHeight || req.query.minHeight) {
+        result = [...between(req)]; 
       };
       if (req.query.moisture) {
         result = [...matchText(req,"moisture","moisture")];
       };
       res.status(200).send(result);
-    } else {
+    } else if (req.params.myList === req.params.mainList) {
       res.status(200).send(masterPlantList);
     }
   },
   update: (req,res)=> {
     if (req.params.myKey) {
-      myList.forEach((plt)=> plt.id===Number.parseInt(req.params.myKey) ? plt.project_notes=req.body.notesInput : null);
+      console.log("fired")
+      myList.forEach((plt)=> plt.id===Number.parseInt(req.params.myKey) ? plt.project_notes = req.body.notesInput : null);
       res.status(200).send(myList);
     } else {res.status(406).send(myList);}; 
   },
