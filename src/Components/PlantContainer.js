@@ -16,7 +16,7 @@ export default function PlantContainer (props) {
 
   return (
     <PlantFigure
-    plantList={this.props.plantList}
-    addToMyPlants={this.addToMyPlants}/>
+    plantList={props.plantList}
+    addToMyPlants={addToMyPlants}/>
   );
 };

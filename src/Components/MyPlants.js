@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import AddedPlant from './AddedPlant';
 import axios from 'axios';
-import {ToastContainer,toast} from 'react-toastify';
 
 
 //Props: removeIDFromMyPlants
@@ -22,7 +21,7 @@ export default class MyPlants extends Component {
         myPlantsList:res
       })
     })
-    .catch((err)=> {toast.error(err)})
+    .catch((err)=> {window.alert(err)})
   }
   removeFromMyPlants = (id) => {
     axios.delete('/api/lists/')

@@ -2,8 +2,8 @@
   "name": "native_perennial_garden_planner",
   "version": "0.1.0",
   "private": true,
-  "main": "/server/index.js",
-  "proxy": "http://localhost:1313",
+  "main":"server/index.js",
+  "proxy":"http://localhost:1313",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
@@ -13,7 +13,7 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.3",
-    "react-toastify": "^7.0.3",
+    "toastify": "^2.0.1",
     "web-vitals": "^1.1.0"
   },
   "scripts": {
@@ -39,16 +39,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/djkoser/native_perennial_garden_planner.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/djkoser/native_perennial_garden_planner/issues"
-  },
-  "homepage": "https://github.com/djkoser/native_perennial_garden_planner#readme"
+  }
 }
