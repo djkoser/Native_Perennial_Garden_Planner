@@ -5,10 +5,14 @@ import axios from 'axios';
 //Props = addIDToMyPlants myPlantsIDs plantList
 export default function PlantContainer (props) {
 
-  const addToMyPlants = (id) => {
+  const {addIDToMyPlants, myPlantsIDs, plantList} = props;
 
-    this.props.addIDToMyPlants(id); 
-  }
+  const addToMyPlants = (id) => {
+    axios.post('/api/lists', )
+    .then((res)=> {})
+    .catch((err)=> {})
+    addIDToMyPlants(id); 
+  }; 
 
   return (
     <PlantFigure

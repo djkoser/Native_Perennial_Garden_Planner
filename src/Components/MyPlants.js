@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import AddedPlant from './AddedPlant';
 import axios from 'axios';
+import {ToastContainer,toast} from 'react-toastify';
+
 
 //Props: removeIDFromMyPlants
 export default class MyPlants extends Component {
@@ -14,15 +16,23 @@ export default class MyPlants extends Component {
   }
 
   retrieveMyPlantsList = () => {
-
+    axios.get('/api/lists/true/false')
+    .then((res)=> {
+      this.setState({
+        myPlantsList:res
+      })
+    })
+    .catch((err)=> {toast.error(err)})
   }
   removeFromMyPlants = (id) => {
-    
+    axios.delete('/api/lists/')
+    .then((res)=> {})
+    .catch((err)=> {})
     this.props.removeIDFromMyPlants(id);
   }
 
   toggleEdit = () => {
-
+    axios.put('/api/lists/')
   }
 
   render() {

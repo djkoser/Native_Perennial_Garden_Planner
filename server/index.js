@@ -1,11 +1,10 @@
 const express = require('express');
 const app = express(); 
-const path = require('path');
 const mc = require('./controllers/main');
 const port = 1313; 
 
 app.use(express.json()); 
-app.use(express.static(path.join(__dirname,'../public')))
+// app.use(express.static(path.join(__dirname,'../public/index.html')))
 
 //Add new items to myList, both user-created and existing
 app.post('/api/lists',(req,res)=> {mc.create(req,res)});

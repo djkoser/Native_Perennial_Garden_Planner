@@ -1,4 +1,3 @@
-import { render } from '@testing-library/react';
 import React, { Component } from 'react';
 import './App.css';
 import Header from './Components/Header';
@@ -14,12 +13,18 @@ export default class App extends Component {
   }
 
   removeIDFromMyPlants = (id) => {
-
+    let newList = this.state.myPlantsIDs.forEach((el,ind,arr) => id===el ? arr.splice(ind,1) : null); 
+    this.setState({
+      myPlantsIDs:newList
+    })
   }; 
 
   addIDToMyPlants = (id) => {
-
-  }
+    let newList = [...this.state.myPlantsIDs,id]; 
+    this.setState({
+      myPlantsIDs:newList
+    })
+  };
 
   render() {
 
