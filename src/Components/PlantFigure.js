@@ -1,25 +1,22 @@
 import React from 'react';
 // plantList addToMyPlants
 export default function PlantFigure (props) {
-  
-  const figs = props.plantList.map(el=> {
+    let figs = null; 
     const {plantList, addToMyPlants} = props;
 
-    plantList.map(plt=>{
+    figs = plantList.map((plt) => {
       return (
         <figure>
-          <img onClick={event=>{addToMyPlants(event.target.attributes.key.value)}} key={plt.id} src={plt.src} />
-          <figcaption>Common Name: {plt.common_name}</figcaption>
-          <figcaption>Botanical Name: {plt.botanical_name}</figcaption>
-          <figcaption>Moisture Req: {plt.moisture}</figcaption>
-          <figcaption>Sun Req: {plt.sun}</figcaption>
-          <figcaption>Height: {plt.height}in</figcaption>
-          <figcaption>Bloom Time: {plt.bloom_time}</figcaption>
+          <img width='150px' onClick={event=>addToMyPlants(plantList[event.target.accessKey])} accessKey={plt.id} key={plt.id} src={plt.src} />
+          <figcaption key={plt.id+"com"}>Common Name: {plt.common_name}</figcaption>
+          <figcaption key={plt.id+"bot"}>Botanical Name: {plt.botanical_name}</figcaption>
+          <figcaption key={plt.id+"moist"}>Moisture Req: {plt.moisture}</figcaption>
+          <figcaption key={plt.id+"sun"}>Sun Req: {plt.sun}</figcaption>
+          <figcaption key={plt.id+"height"}>Height: {plt.height}in</figcaption>
+          <figcaption key={plt.id+"bloomT"}>Bloom Time: {plt.bloom_time}</figcaption>
         </figure>
       )
-    })
-  });
-
+    });
   return (
     <div>
       {figs}

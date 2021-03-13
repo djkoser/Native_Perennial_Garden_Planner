@@ -3,7 +3,7 @@ const app = express();
 const mc = require('./controllers/main');
 const port = 1313; 
 
-app.use(express.json()); 
+app.use(express.json());  
 // app.use(express.static(path.join(__dirname,'../public/index.html')))
 
 //Add new items to myList, both user-created and existing

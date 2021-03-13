@@ -2,37 +2,58 @@ import React, { Component } from 'react';
 import './App.css';
 import Header from './Components/Header';
 import SearchBox from './Components/SearchBox';
-import MyPlants from './Components/MyPlants'
+import MyPlants from './Components/MyPlants';
+import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
 
 export default class App extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      myPlantsIDs:[]
+      myPlantsList:[]
     };
   }
 
-  removeIDFromMyPlants = (id) => {
-    let newList = this.state.myPlantsIDs.forEach((el,ind,arr) => id===el ? arr.splice(ind,1) : null); 
-    this.setState({
-      myPlantsIDs:newList
+  retrieveMyPlantsList = () => {
+    axios.get('/api/lists/true/false')
+    .then((res)=> {
+      this.setState({
+        myPlantsList:res.data
+      })
     })
-  }; 
+    .catch((err)=> {window.alert(err)})
+  }
 
-  addIDToMyPlants = (id) => {
-    let newList = [...this.state.myPlantsIDs,id]; 
-    this.setState({
-      myPlantsIDs:newList
-    })
+  addToMyPlants = (obj) => {
+    axios.post('/api/lists',obj)
+      .then((res) => {this.setState({myPlantsList:res.data})})
+      .catch((err) => {toast.error(err)})
   };
 
-  render() {
+  removeFromMyPlants = (id) => {
+    axios.delete('/api/lists/'+id)
+    .then((res)=> {
+      this.setState({
+        myPlantsList:res.data
+      })
+    })
+    .catch((err)=> {window.alert(err)})
+  }
 
+  render() {
+    const {myPlantsList} = this.state
     return (
       <div className="App">
         <Header/>
-        <SearchBox addIDToMyPlants={this.addIDToMyPlants} myPlantsIDs={this.state.myPlantsIDs}/>
-        <MyPlants removeIDFromMyPlants={this.removeIDFromMyPlants}/>
+        <SearchBox 
+        myPlantsList={myPlantsList}
+        addToMyPlants={this.addToMyPlants}
+        />
+
+        <MyPlants  
+        retrieveMyPlantsList={this.retrieveMyPlantsList} 
+        removeFromMyPlants={this.removeFromMyPlants}
+        myPlantsList={myPlantsList}/>
       </div>
     );
   }

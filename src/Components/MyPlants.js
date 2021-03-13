@@ -2,66 +2,58 @@ import React, { Component } from 'react';
 import AddedPlant from './AddedPlant';
 import axios from 'axios';
 
-
-//Props: removeIDFromMyPlants
+//Props from App.js - retrieveMyPlantsList removeFromMyPlants myPlantsList
 export default class MyPlants extends Component {
   constructor (props) {
     super(props);
     this.state = {
       notesInput:"",
-      myPlantsList:"",
       editToggle:false
     };
   }
 
-  retrieveMyPlantsList = () => {
-    axios.get('/api/lists/true/false')
-    .then((res)=> {
-      this.setState({
-        myPlantsList:res
-      })
-    })
-    .catch((err)=> {window.alert(err)})
-  }
-  removeFromMyPlants = (id) => {
-    axios.delete('/api/lists/')
-    .then((res)=> {})
-    .catch((err)=> {})
-    this.props.removeIDFromMyPlants(id);
-  }
 
   toggleEdit = () => {
+    if (this.state.editToggle === false ){
+      this.setState({
+        editToggle:true
+      })
+    }
     axios.put('/api/lists/')
   }
 
   render() {
+
+    const {_,removeFromMyPlants, myPlantsList} = this.props
+
     return (
       <div>
         <div>
           <AddedPlant 
-          myPlantsIDs={this.state.myPLantsList}
-          removeFromMyPlants={this.removeFromMyPlants}
+          myPlantsList={myPlantsList}
+          removeFromMyPlants={removeFromMyPlants}
           toggleEdit={this.toggleEdit}
           bloomTime={'Early Spring'}/>
+          
         </div>
         <div>
             <AddedPlant 
-            myPlantsIDs={this.state.myPLantsList}
-            removeFromMyPlants={this.removeFromMyPlants}
+            myPlantsList={myPlantsList}
+            removeFromMyPlants={removeFromMyPlants}
             toggleEdit={this.toggleEdit}
             bloomTime={'Late Spring'}/>
         </div>
         <div>
             <AddedPlant 
-            myPlantsIDs={this.state.myPLantsList}
-            removeFromMyPlants={this.removeFromMyPlants}
+            myPlantsList={myPlantsList}
+            removeFromMyPlants={removeFromMyPlants}
             toggleEdit={this.toggleEdit}
             bloomTime={'Summer'}/>
         </div>
         <div>
             <AddedPlant 
-            myPlantsIDs={this.state.myPLantsList}
-            removeFromMyPlants={this.removeFromMyPlants}
+            myPlantsList={myPlantsList}
+            removeFromMyPlants={removeFromMyPlants}
             toggleEdit={this.toggleEdit}
             bloomTime={'Fall'}/>
         </div>

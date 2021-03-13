@@ -1,4 +1,4 @@
-const masterPlantList = require('../../plant_master-list.json'); 
+const masterPlantList = require('../../plantMasterList.json');
 const myList=[];
 
 //Add new items to myList, both user-created and existing
@@ -50,7 +50,9 @@ module.exports = {
     if (req.params.mainList==="true" && req.params.myList==="false") {
       let result = []; 
       if (req.query.botName) {
+        console.log("botname")
         result = [...filterText(req,"botName","botanical_name")]; 
+        console.log(result)
       };
       if (req.query.comName) {
         result = [...filterText(req,"comName","common_name")];
@@ -67,14 +69,15 @@ module.exports = {
       if (req.query.moisture) {
         result = [...matchText(req,"moisture","moisture")];
       };
-      res.status(200).send(result);
+      console.log(result)
+      result.length===0 ? res.status(200).send(masterPlantList) : res.status(200).send(result);
+
     } else if (req.params.myList === req.params.mainList) {
       res.status(200).send(masterPlantList);
     }
   },
   update: (req,res)=> {
     if (req.params.myKey) {
-      console.log("fired")
       myList.forEach((plt)=> plt.id===Number.parseInt(req.params.myKey) ? plt.project_notes = req.body.notesInput : null);
       res.status(200).send(myList);
     } else {res.status(406).send(myList);}; 
