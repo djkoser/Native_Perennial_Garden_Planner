@@ -10,11 +10,12 @@ export default function AddedPlant (props) {
    list = myPlantsList.map(el=> {
     if (el.bloom_time===bloomTime) {
       return (
-      <span>
-      <li accessKey={el.id} onClick={ev=> removeFromMyPlants(ev.target.accessKey)}>Common Name:{el.common_name}, Botanical Name:{el.botanical_name}, Moisture:{el.moisture}, Sun:{el.sun}, Height:{el.height}, Bloom Time:{el.bloom_time}, Notes: {el.notes}</li>
+      <li key={'myPlant'+el.id}>
+      <img id={el.id} onClick={ev=> removeFromMyPlants(ev.target.id)} alt={`${el.botanical_name}, commonly known as ${el.common_name}.`} src={el.src} width='80px'/>
+      <span id={el.id} onClick={ev=> removeFromMyPlants(ev.target.id)}>Common Name:{el.common_name}, Botanical Name:{el.botanical_name}, Moisture:{el.moisture}, Sun:{el.sun}, Height:{el.height}, Bloom Time:{el.bloom_time}, Notes: {el.notes}</span>
       <button onClick={toggleEdit}>Add Notes</button>
-      </span>
-      )}
+      </li>
+      )} else {return null}
     })
   return (
     <ul>

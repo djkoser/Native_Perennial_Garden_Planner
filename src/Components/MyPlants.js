@@ -12,19 +12,24 @@ export default class MyPlants extends Component {
     };
   }
 
-
   toggleEdit = () => {
-    if (this.state.editToggle === false ){
+    console.log('toggle Edit fired')
+    if (this.state.editToggle === false){
       this.setState({
         editToggle:true
       })
+    if (this.state.editToggle === true) {
+      this.setState({
+        editToggle:false
+      })
+    }
     }
     axios.put('/api/lists/')
   }
 
   render() {
 
-    const {_,removeFromMyPlants, myPlantsList} = this.props
+    const {removeFromMyPlants, myPlantsList} = this.props
 
     return (
       <div>

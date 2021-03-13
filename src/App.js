@@ -4,7 +4,7 @@ import Header from './Components/Header';
 import SearchBox from './Components/SearchBox';
 import MyPlants from './Components/MyPlants';
 import axios from 'axios';
-import { ToastContainer, toast } from 'react-toastify';
+import {ToastContainer,toast} from 'react-toastify';
 
 export default class App extends Component {
   constructor (props) {
@@ -14,40 +14,49 @@ export default class App extends Component {
     };
   }
 
-  retrieveMyPlantsList = () => {
+  addToMyPlants = (obj) => {
+    console.log('addToMyPlants fired')
+    if (this.state.myPlantsList.findIndex(plt=> plt.id===obj.id)===-1){
+    axios.post('/api/lists',obj)
+      .then((res) => {this.setState({myPlantsList:res.data})})
+      .catch((err) => {toast.error(err)})
+    } else {
+      toast.warn(`You have already added ${obj.common_name} to your list, add project notes to indicate project quantities.`)};
+  };
+
+  retrieveMyPlantsList = (add,obj) => {
+    console.log('retrieveMyPlantsList Fired')
     axios.get('/api/lists/true/false')
     .then((res)=> {
       this.setState({
         myPlantsList:res.data
-      })
+      }); 
+      if (add) { console.log('passed') 
+      this.addToMyPlants(obj)} ;
     })
-    .catch((err)=> {window.alert(err)})
-  }
-
-  addToMyPlants = (obj) => {
-    axios.post('/api/lists',obj)
-      .then((res) => {this.setState({myPlantsList:res.data})})
-      .catch((err) => {toast.error(err)})
+    .catch((err)=> {toast.error(err)});
   };
 
   removeFromMyPlants = (id) => {
+    console.log("removeFromMyPlants fired")
     axios.delete('/api/lists/'+id)
     .then((res)=> {
       this.setState({
         myPlantsList:res.data
       })
     })
-    .catch((err)=> {window.alert(err)})
+    .catch((err)=> {toast.error(err)})
   }
 
   render() {
     const {myPlantsList} = this.state
     return (
       <div className="App">
+        <ToastContainer/> 
         <Header/>
         <SearchBox 
         myPlantsList={myPlantsList}
-        addToMyPlants={this.addToMyPlants}
+        addToMyPlants={this.retrieveMyPlantsList}
         />
 
         <MyPlants  

@@ -10,22 +10,26 @@ const myList=[];
 //Remove items from myList array, main list not modifiable
 // '/api/lists/key'
 
-const filterText = (req, queryName,keyName) => {
-  return masterPlantList.filter((plt) => {
+const filterText = (list,req,queryName,keyName) => {
+  return list.filter((plt) => {
     let val = plt[keyName].toLowerCase();
-    return val.includes(req.query[queryName].toLowerCase())
-  });
+    if (val.includes(req.query[queryName].toLowerCase())){
+      return true;
+    } else if (val.includes(req.query[queryName].toLowerCase())){
+      return false
+    };
+  })
 };
 
-const matchText = (req,queryName,keyName) => {
-  return masterPlantList.filter((plt) => {
+const matchText = (list,req,queryName,keyName) => {
+  return list.filter((plt) => {
     return plt[keyName] === req.query[queryName]
   });
 }
 
 //Query minHeight before maxHeight!!
-const between = (req) => {
-  return masterPlantList.filter((plt) => {
+const between = (list, req) => {
+  return list.filter((plt) => {
     if (req.query.maxHeight && req.query.minHeight) {
       return plt.height <= Number.parseInt(req.query.maxHeight) && plt.height >= Number.parseInt(req.query.minHeight);
     } else if (req.query.maxHeight && !req.query.minHeight) {
@@ -45,32 +49,44 @@ module.exports = {
   },
   read: (req,res)=> {
     if (req.params.myList==="true" && req.params.mainList==="false") {
+      console.log('myList')
       res.status(200).send(myList);
     };
     if (req.params.mainList==="true" && req.params.myList==="false") {
-      let result = []; 
+      console.log('main list')
+      let result = [...masterPlantList]; 
       if (req.query.botName) {
         console.log("botname")
-        result = [...filterText(req,"botName","botanical_name")]; 
-        console.log(result)
+        console.log(req.query.botName)
+        result = [...filterText(result,req,"botName","botanical_name")]; 
       };
       if (req.query.comName) {
-        result = [...filterText(req,"comName","common_name")];
+        console.log("comName")
+        console.log(req.query.comName)
+        result = [...filterText(result,req,"comName","common_name")];
       };
       if (req.query.sun) {
-        result = [...matchText(req,"sun","sun")];
+        console.log("sun")
+        console.log(req.query.sun)
+        result = [...matchText(result,req,"sun","sun")];
       };
       if (req.query.blmTime) {
-        result = [...matchText(req,"blmTime","bloom_time")];
+        console.log("blmTime")
+        console.log(req.query.blmTime)
+        result = [...matchText(result,req,"blmTime","bloom_time")];
       };
       if (req.query.maxHeight || req.query.minHeight) {
-        result = [...between(req)]; 
+        console.log("max/min height")
+        console.log(req.query.maxHeight)
+        console.log(req.query.minHeight)
+        result = [...between(result,req)]; 
       };
       if (req.query.moisture) {
-        result = [...matchText(req,"moisture","moisture")];
+        console.log("moisture")
+        console.log(req.query.moisture)
+        result = [...matchText(result,req,"moisture","moisture")];
       };
-      console.log(result)
-      result.length===0 ? res.status(200).send(masterPlantList) : res.status(200).send(result);
+      res.status(200).send(result);
 
     } else if (req.params.myList === req.params.mainList) {
       res.status(200).send(masterPlantList);
