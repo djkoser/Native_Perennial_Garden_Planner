@@ -12,6 +12,10 @@ export default class MyPlants extends Component {
     };
   }
 
+  componentDidMount() {
+    this.props.retrieveMyPlantsList()
+  }
+
   toggleEdit = () => {
     console.log('toggle Edit fired')
     if (this.state.editToggle === false){

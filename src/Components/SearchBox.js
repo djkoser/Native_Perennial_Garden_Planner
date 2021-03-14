@@ -81,6 +81,7 @@ export default class SearchBox extends Component {
         if (maxHeight) {query+="&"};
         query+="moisture="+encodeURI(moisture);
       }
+        console.log('filterplants second')
         axios.get(query)
         .then((res)=> {
           this.setState({plantList:res.data})})
@@ -155,11 +156,15 @@ export default class SearchBox extends Component {
             <option value={"Wet, Emergent"}>Wet, Emergent</option>
             <option value={"Emergent"}>Emergent</option>
           </select>
-          <button onClick={()=>this.filterPlants(botanicalName, commonName, sun, bloomTime, minHeight, maxHeight, moisture)}>Search</button>
-          <button onClick={()=>this.clearSearch()}>Clear Search</button>
+          <button onClick={event=>{
+            event.preventDefault();
+            this.filterPlants(botanicalName, commonName, sun, bloomTime, minHeight, maxHeight, moisture)}}>Search</button>
+          <button onClick={this.clearSearch}>Clear Search</button>
           <label htmlFor='srcInput'>Custom Plant Picture URL</label>
           <input id='srcInput' type='text' onChange={event=>this.handleChange(event.target.value,"src")} value={src} placeholder={"(Optional)"}></input>
-          <button onClick={() => this.addNewPlant(userAddedCount, commonName, botanicalName, moisture,sun,minHeight,maxHeight,bloomTime,src)}>Add Custom Plant</button>
+          <button onClick={(event) => {
+            event.preventDefault();
+            this.addNewPlant(userAddedCount, commonName, botanicalName, moisture,sun,minHeight,maxHeight,bloomTime,src)}}>Add Custom Plant</button>
         </form>
         <PlantFigure
         plantList={plantList}
