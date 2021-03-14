@@ -57,9 +57,9 @@ export default class MyPlants extends Component {
     const {notesInput,editToggle} = this.state;
 
     return (
-      <div>
+      <aside>
         <ToastContainer/>
-        <div>
+        <section>
           <AddedPlant 
           myPlantsList={myPlantsList}
           removeFromMyPlants={removeFromMyPlants}
@@ -69,8 +69,8 @@ export default class MyPlants extends Component {
           notesInput={notesInput}
           handleChange={this.handleChange}/>
           
-        </div>
-        <div>
+        </section>
+        <section>
             <AddedPlant 
             myPlantsList={myPlantsList}
             removeFromMyPlants={removeFromMyPlants}
@@ -79,8 +79,8 @@ export default class MyPlants extends Component {
             editToggle={this.state.editToggle}
             notesInput={notesInput}
             handleChange={this.handleChange}/>
-        </div>
-        <div>
+        </section>
+        <section>
             <AddedPlant 
             myPlantsList={myPlantsList}
             removeFromMyPlants={removeFromMyPlants}
@@ -89,8 +89,8 @@ export default class MyPlants extends Component {
             editToggle={this.state.editToggle}
             notesInput={notesInput}
             handleChange={this.handleChange}/>
-        </div>
-        <div>
+        </section>
+        <section>
             <AddedPlant 
             myPlantsList={myPlantsList}
             removeFromMyPlants={removeFromMyPlants}
@@ -99,8 +99,8 @@ export default class MyPlants extends Component {
             editToggle={this.state.editToggle}
             notesInput={notesInput}
             handleChange={this.handleChange}/>
-        </div>
-      </div>
+        </section>
+      </aside>
     );
   };
 } 

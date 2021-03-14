@@ -48,7 +48,7 @@ export default class App extends Component {
   render() {
     const {myPlantsList} = this.state
     return (
-      <div className="App">
+      <body className="App">
         <ToastContainer/> 
         <Header/>
         <SearchBox 
@@ -60,7 +60,7 @@ export default class App extends Component {
         retrieveMyPlantsList={this.retrieveMyPlantsList} 
         removeFromMyPlants={this.removeFromMyPlants}
         myPlantsList={myPlantsList}/>
-      </div>
+      </body>
     );
   }
 }; 
