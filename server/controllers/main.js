@@ -20,7 +20,7 @@ const filterText = (list,req,queryName,keyName) => {
     let val = plt[keyName].toLowerCase();
     if (val.includes(req.query[queryName].toLowerCase())){
       return true;
-    } else if (val.includes(req.query[queryName].toLowerCase())){
+    } else {
       return false
     };
   })

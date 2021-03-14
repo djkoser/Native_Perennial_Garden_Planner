@@ -149,7 +149,7 @@ export default class SearchBox extends Component {
               <option value={"Dry"}>Dry</option>
               <option value={"Dry, Mesic"}>Dry Mesic</option>
               <option value={"Mesic"}>Mesic</option>
-              <option value={"Mesic, Wet"}>Mesic,</option>
+              <option value={"Mesic, Wet"}>Mesic, Wet</option>
               <option value={"Wet"}>Wet</option>
               <option value={"Wet, Emergent"}>Wet, Emergent</option>
               <option value={"Emergent"}>Emergent</option>
