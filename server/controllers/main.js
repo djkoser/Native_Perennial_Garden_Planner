@@ -27,12 +27,9 @@ const filterText = (list,req,queryName,keyName) => {
 };
 
 const matchText = (list,req,queryName,keyName) => {
-  return list.filter((plt) => {
-    return plt[keyName] === req.query[queryName]
-  });
+  return list.filter((plt) => plt[keyName] === req.query[queryName] ? true : false); 
 }
 
-//Query minHeight before maxHeight!!
 const between = (list, req) => {
   return list.filter((plt) => {
     if (req.query.maxHeight && req.query.minHeight) {
@@ -74,6 +71,7 @@ module.exports = {
         result = [...between(result,req)]; 
       };
       if (req.query.moisture) {
+        console.log(req.query.moisture)
         result = [...matchText(result,req,"moisture","moisture")];
       };
       res.status(200).send(result);

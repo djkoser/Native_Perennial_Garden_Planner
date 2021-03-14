@@ -52,27 +52,27 @@ export default class SearchBox extends Component {
         query+="botName="+encodeURI(botanicalName);
       }
       if (commonName) {
-        if (botanicalName) {query+="&"};
+        if (query[query.length]!=="&") {query+="&"};
         query+="comName="+encodeURI(commonName);
       }
       if (sun) {
-        if (commonName) {query+="&"};
+        if (query[query.length]!=="&") {query+="&"};
         query+="sun="+encodeURI(sun);
       }
       if (bloomTime) {
-        if (sun) {query+="&"};
+        if (query[query.length]!=="&") {query+="&"};
         query+="blmTime="+encodeURI(bloomTime);
       }
       if (minHeight) {
-        if (bloomTime) {query+="&"};
+        if (query[query.length]!=="&") {query+="&"};
         query+="minHeight="+encodeURI(minHeight);
       }
       if (maxHeight) {
-        if (minHeight) {query+="&"};
+        if (query[query.length]!=="&") {query+="&"};
         query+="maxHeight="+encodeURI(maxHeight);
       }
       if (moisture) {
-        if (maxHeight) {query+="&"};
+        if (query[query.length]!=="&") {query+="&"};
         query+="moisture="+encodeURI(moisture);
       }
         axios.get(query)
