@@ -1,8 +1,114 @@
+.App {
+  width: 100vw;
+  display:flex;
+  justify-content: center; 
+  align-items: center;
+  flex-direction: column;
+}
 header {
   display:flex;
   justify-content: center; 
-  align-content: center;
-  height:100px;
-  width:100vw;
+  align-items: center;
+  height:75px;
+  width:60vw;
   background-color: #70CF97;
+  font-size:xx-large;
+  color:rgb(255, 255, 255);
+  font-weight: 800;
+  margin-bottom: 15px;
+  margin-top: 15px;
+  margin-right: 25vw;
+  box-shadow: 5px 5px 3px 0px rgba(0, 0, 0, 0.377);
 }
+main {
+  width:85vw;
+  display:flex;
+  
+}
+form {
+  width:60vw;
+  display:flex;
+  flex-wrap: wrap;
+  align-content:space-around;
+  justify-content: flex-start;
+  padding: 20px;
+  background-color: #E1F5EA;
+  margin-bottom: 20px;
+}
+label, input, select,.searchButton{
+  font-size:14pt;
+  margin-bottom: 5px;
+  margin-top:5px;
+  margin-left:10px;
+}
+label {
+  margin-left:25px;
+}
+.searchButton {
+  font-size:13pt;
+  height:35px;
+}
+.figureBox {
+  width: 60vw;
+  display:inline-flex;
+  flex-wrap:wrap;
+  align-items:space-between;
+  justify-content:space-between;
+  padding: 20px;
+  background-color: #E1F5EA;
+}
+figure {
+  height:325px;
+  width:236px;
+  text-align: center;
+  margin:2px;
+  border: solid gray thin;
+}
+.figs {
+  float:none; 
+}
+aside {
+  position: fixed;
+  width: 25vw;
+  height:95vh;
+  right:6vw;
+  top:15px;
+  border:solid 5pt #219653;
+  display:inline-flex;
+  flex-direction: column; 
+  justify-content: center;
+  align-items:center;
+  padding-bottom:15px;
+}
+section {
+  height:21vh;
+  width:23vw;
+  background-color: #E1F5EA;
+  margin-top: 15px;
+  text-align: center;
+  font-size:12pt;
+  overflow:scroll;
+}
+ol, li {
+  text-align: left;
+}
+img {
+  float:left;
+}
+
+button {
+  font-size: 10pt;
+}
+
+/* Pseudo Classes */
+button:hover {
+  background-color:  #219653;
+  color: white;
+}
+img:hover {
+  border: solid thick #219653;
+}
+li>img:hover {
+  border:solid thick red; 
+}
+

@@ -3,7 +3,7 @@ import AddedPlant from './AddedPlant';
 import axios from 'axios';
 import {ToastContainer,toast} from 'react-toastify';
 
-//Props from App.js - retrieveMyPlantsList removeFromMyPlants myPlantsList
+//Props from App.js - retrieveMyPlantsList removeFromMyPlants myPlantsList, numESpring, numLSpring, numSummer,numFall
 export default class MyPlants extends Component {
   constructor (props) {
     super(props);
@@ -37,6 +37,7 @@ export default class MyPlants extends Component {
       .then(()=> this.props.retrieveMyPlantsList())
       .catch(err=>toast.error(err));
       this.setState({
+        notesInput:"",
         editToggle:{
           toggle:false,
           id:0
@@ -53,13 +54,13 @@ export default class MyPlants extends Component {
 
   render() {
 
-    const {removeFromMyPlants, myPlantsList} = this.props;
+    const {removeFromMyPlants, myPlantsList, numESpring, numLSpring, numSummer,numFall} = this.props;
     const {notesInput,editToggle} = this.state;
 
     return (
       <aside>
         <ToastContainer/>
-        <section>
+        <section>Early Spring-<strong>{numESpring}</strong> in List
           <AddedPlant 
           myPlantsList={myPlantsList}
           removeFromMyPlants={removeFromMyPlants}
@@ -70,7 +71,7 @@ export default class MyPlants extends Component {
           handleChange={this.handleChange}/>
           
         </section>
-        <section>
+        <section>Late Spring-<strong>{numLSpring}</strong> in List
             <AddedPlant 
             myPlantsList={myPlantsList}
             removeFromMyPlants={removeFromMyPlants}
@@ -80,7 +81,7 @@ export default class MyPlants extends Component {
             notesInput={notesInput}
             handleChange={this.handleChange}/>
         </section>
-        <section>
+        <section>Summer-<strong>{numSummer}</strong> in List
             <AddedPlant 
             myPlantsList={myPlantsList}
             removeFromMyPlants={removeFromMyPlants}
@@ -90,7 +91,7 @@ export default class MyPlants extends Component {
             notesInput={notesInput}
             handleChange={this.handleChange}/>
         </section>
-        <section>
+        <section>Fall-<strong>{numFall}</strong> in List
             <AddedPlant 
             myPlantsList={myPlantsList}
             removeFromMyPlants={removeFromMyPlants}

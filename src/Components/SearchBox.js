@@ -107,53 +107,61 @@ export default class SearchBox extends Component {
     const {botanicalName, commonName, sun, bloomTime, minHeight, maxHeight, moisture, src, plantList, userAddedCount} = this.state
 
     return (
-      <div>
+      <div className='searchResults'>
         <ToastContainer/>
         <form>
-          <label htmlFor='botNameInput'>Botanical Name</label>
-          <input id='botNameInput' type='text' onChange={event=>this.handleChange(event.target.value,"botanicalName")} value={botanicalName} placeholder={"Botanical Name"}></input>
-          <label htmlFor='comNameInput'>Common Name</label>
-          <input id='comNameInput' type='text'onChange={event=>this.handleChange(event.target.value,"commonName")} value={commonName} placeholder={"Common Name"}></input>
-          <label htmlFor='sunDropdown'>Sun</label>
-          <select id='sunDropdown' onChange={event=>this.handleChange(event.target.value,"sun")} value={sun}>
-            <option value={""}></option>
-            <option value={"Full"}>Full</option>
-            <option value={"Full, Partial"}>Full, Partial</option>
-            <option value={"Partial"}>Partial</option>
-            <option value={"Partial, Full Shade"}>Partial, Full Shade</option>
-            <option value={"Full Shade"}>Full Shade</option>
-            <option value={"Full, Partial, Full Shade"}>Full, Partial, Full Shade</option>
-          </select>
-          <label htmlFor='blmTmDropdown'>Bloom Time</label>
-          <select id = 'blmTmDropdown' onChange={event=>this.handleChange(event.target.value,"bloomTime")} value={bloomTime}>
-            <option value={""}></option>
-            <option value={"Early Spring"}>Early Spring</option>
-            <option value={"Late Spring"}>Late Spring</option>
-            <option value={"Summer"}>Summer</option>
-            <option value={"Fall"}>Fall</option>
-          </select>
-          <label htmlFor='minHt'>Height: Min</label>
-          <input id='minHt'type='text' onChange={event=>{this.handleChange(event.target.value,"minHeight")}} value={minHeight} placeholder={"Min"}></input>
-          <label htmlFor='maxHt'>Max</label>
-          <input id='maxHt' type='text' onChange={event=>this.handleChange(event.target.value,"maxHeight")} value={maxHeight} placeholder={"Max"}></input>
-          <label htmlFor='moistLvl'>Moisture</label>
-          <select id ='moistLvl' onChange={event=>this.handleChange(event.target.value,"moisture")} value={moisture}>
-            <option value={""}></option>
-            <option value={"Dry"}>Dry</option>
-            <option value={"Dry, Mesic"}>Dry Mesic</option>
-            <option value={"Mesic"}>Mesic</option>
-            <option value={"Mesic, Wet"}>Mesic,</option>
-            <option value={"Wet"}>Wet</option>
-            <option value={"Wet, Emergent"}>Wet, Emergent</option>
-            <option value={"Emergent"}>Emergent</option>
-          </select>
-          <button onClick={event=>{
+          <label htmlFor='botNameInput'>Botanical Name
+            <input id='botNameInput' type='text' onChange={event=>this.handleChange(event.target.value,"botanicalName")} value={botanicalName} placeholder={"Botanical Name"}></input>
+          </label>
+          <label htmlFor='comNameInput'>Common Name
+            <input id='comNameInput' type='text'onChange={event=>this.handleChange(event.target.value,"commonName")} value={commonName} placeholder={"Common Name"}></input>
+          </label>
+          <label htmlFor='sunDropdown'>Sun
+            <select id='sunDropdown' onChange={event=>this.handleChange(event.target.value,"sun")} value={sun}>
+              <option value={""}></option>
+              <option value={"Full"}>Full</option>
+              <option value={"Full, Partial"}>Full, Partial</option>
+              <option value={"Partial"}>Partial</option>
+              <option value={"Partial, Full Shade"}>Partial, Full Shade</option>
+              <option value={"Full Shade"}>Full Shade</option>
+              <option value={"Full, Partial, Full Shade"}>Full, Partial, Full Shade</option>
+            </select>
+          </label>
+          <label htmlFor='blmTmDropdown'>Bloom Time
+            <select id = 'blmTmDropdown' onChange={event=>this.handleChange(event.target.value,"bloomTime")} value={bloomTime}>
+              <option value={""}></option>
+              <option value={"Early Spring"}>Early Spring</option>
+              <option value={"Late Spring"}>Late Spring</option>
+              <option value={"Summer"}>Summer</option>
+              <option value={"Fall"}>Fall</option>
+            </select>
+          </label>
+          <label htmlFor='minHt'>Height: Min
+            <input id='minHt'type='text' onChange={event=>{this.handleChange(event.target.value,"minHeight")}} value={minHeight} placeholder={"Min"}></input>
+          </label>
+          <label htmlFor='maxHt'>Max
+            <input id='maxHt' type='text' onChange={event=>this.handleChange(event.target.value,"maxHeight")} value={maxHeight} placeholder={"Max"}></input>
+          </label>
+          <label htmlFor='moistLvl'>Moisture
+            <select id ='moistLvl' onChange={event=>this.handleChange(event.target.value,"moisture")} value={moisture}>
+              <option value={""}></option>
+              <option value={"Dry"}>Dry</option>
+              <option value={"Dry, Mesic"}>Dry Mesic</option>
+              <option value={"Mesic"}>Mesic</option>
+              <option value={"Mesic, Wet"}>Mesic,</option>
+              <option value={"Wet"}>Wet</option>
+              <option value={"Wet, Emergent"}>Wet, Emergent</option>
+              <option value={"Emergent"}>Emergent</option>
+            </select>
+          </label>
+          <button className={"searchButton"} onClick={event=>{
             event.preventDefault();
             this.filterPlants(botanicalName, commonName, sun, bloomTime, minHeight, maxHeight, moisture)}}>Search</button>
-          <button onClick={this.clearSearch}>Clear Search</button>
-          <label htmlFor='srcInput'>Custom Plant Picture URL</label>
-          <input id='srcInput' type='text' onChange={event=>this.handleChange(event.target.value,"src")} value={src} placeholder={"(Optional)"}></input>
-          <button onClick={(event) => {
+          <button className={"searchButton"} onClick={this.clearSearch}>Clear Search</button>
+          <label htmlFor='srcInput'>Custom Plant Picture URL
+            <input id='srcInput' type='text' onChange={event=>this.handleChange(event.target.value,"src")} value={src} placeholder={"(Optional)"}></input>
+          </label>
+          <button className={"searchButton"} onClick={(event) => {
             event.preventDefault();
             this.addNewPlant(userAddedCount, commonName, botanicalName, moisture,sun,minHeight,maxHeight,bloomTime,src)}}>Add Custom Plant</button>
         </form>
