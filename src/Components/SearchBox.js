@@ -93,6 +93,7 @@ export default class SearchBox extends Component {
       moisture:"",
       plantList:[]
       });
+    this.filterPlants();
   }
     
   handleChange = (value, key) => {
@@ -157,7 +158,9 @@ export default class SearchBox extends Component {
           <button className={"searchButton"} onClick={event=>{
             event.preventDefault();
             this.filterPlants(botanicalName, commonName, sun, bloomTime, minHeight, maxHeight, moisture)}}>Search</button>
-          <button className={"searchButton"} onClick={this.clearSearch}>Clear Search</button>
+          <button className={"searchButton"} onClick={event => {
+            event.preventDefault()
+            this.clearSearch()}}>Clear Search</button>
           <label htmlFor='srcInput'>Custom Plant Picture URL
             <input id='srcInput' type='text' onChange={event=>this.handleChange(event.target.value,"src")} value={src} placeholder={"(Optional)"}></input>
           </label>

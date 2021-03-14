@@ -94,6 +94,12 @@ export default class App extends Component {
       });
   };
 
+  setParentMyPlantsList = (arr) => {
+    this.setState({
+      myPlantsList:arr
+    })
+  }
+
   removeFromMyPlants = (id, bloom_time) => {
     axios.delete('/api/lists/'+id)
     .then((res)=> {
@@ -170,6 +176,7 @@ export default class App extends Component {
         numLSpring={numLSpring}
         numSummer={numSummer}
         numFall={numFall}
+        setParentMyPlantsList={this.setParentMyPlantsList}
         />
       </main>
       </div>

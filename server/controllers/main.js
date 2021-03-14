@@ -91,8 +91,7 @@ module.exports = {
   },
   patch: (req, res) => {
     if (req.params.myKey) {
-      console.log(req.body)
-      myList.forEach((plt) => plt.id === Number.parseInt(req.params.myKey) ? plt.project_notes = req.body.project_notes : null);
+      myList.forEach((plt) => plt.id.toString() === req.params.myKey ? plt.project_notes = req.body.project_notes : null);
       res.status(200).send(myList);
     } else if (!req.params.myKey) {
       res.status(406).send(myList)
@@ -124,7 +123,7 @@ module.exports = {
     },
   delete: (req,res)=> {
     if (req.params.key) {
-      let ind = myList.findIndex(plt=> plt.id===Number.parseInt(req.params.key) ? true : false);
+      let ind = myList.findIndex(plt=> plt.id.toString()===req.params.key ? true : false);
       myList.splice(ind,1); 
       res.status(200).send(myList);
     } else {res.status(406).send(myList);}; 

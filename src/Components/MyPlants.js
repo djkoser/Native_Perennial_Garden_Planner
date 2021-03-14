@@ -21,20 +21,22 @@ export default class MyPlants extends Component {
   }
 
   toggleEdit = (id) => {
+    console.log(typeof id);
     if (this.state.editToggle.toggle===false) {
-      let existingPlantInfo = this.props.myPlantsList.filter(plt=> plt.id===Number.parseInt(id) ? true : false)
+      let existingPlantInfo = this.props.myPlantsList.filter(plt=> plt.id.toString()===id ? true : false );
+      existingPlantInfo = existingPlantInfo[0].project_notes;
       this.setState({
+        notesInput: existingPlantInfo,
         editToggle:{
           toggle:true,
           id:id,
-          notesInput: existingPlantInfo.project_notes
         }
       })
     } 
     if (this.state.editToggle.toggle===true) {
-      let body = {"notesInput":this.state.notesInput}
-      axios.put(`/api/lists/${id}`, body)
-      .then(()=> this.props.retrieveMyPlantsList())
+      let body = {"project_notes":this.state.notesInput};
+      axios.patch(`/api/lists/${id}`, body)
+      .then((res)=> this.props.setParentMyPlantsList(res.data))
       .catch(err=>toast.error(err));
       this.setState({
         notesInput:"",
