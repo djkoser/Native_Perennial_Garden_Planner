@@ -21,8 +21,36 @@ export default class App extends Component {
   addToMyPlants = (obj) => {
     if (this.state.myPlantsList.findIndex(plt=> plt.id===obj.id)===-1 && obj.bloom_time){
     axios.post('/api/lists',obj)
-      .then((res) => {this.setState({myPlantsList:res.data})})
-      .catch((err) => {toast.error(err)})
+      .then((res) => {
+        this.setState({myPlantsList:res.data})
+        let {numESpring, numLSpring, numSummer, numFall} = this.state;
+        switch (obj.bloom_time) {
+          case 'Early Spring':
+            this.setState({
+              numESpring: numESpring+=1,
+            });
+            break;
+          case 'Late Spring':
+            this.setState({
+              numLSpring: numLSpring+=1,
+            });
+            console.log(this.state.numLSpring)
+            break;
+          case 'Summer':
+            this.setState({
+              numSummer: numSummer+=1,
+            });
+            break;
+          case 'Fall':
+            this.setState({
+              numFall: numFall+=1,
+            });
+            break;
+          default: 
+            console.log("No Case Satisfied, Check Data")
+            break;
+        }
+      }).catch((err) => {toast.error(err)})
     } else if ((this.state.myPlantsList.findIndex(plt=> plt.id===obj.id)> -1)){
       toast.warn(`You have already added ${obj.common_name} to your list, add project notes to indicate project quantities.`)
     } else(toast.warn('Please specify at least bloom time when adding a new plant.'))
@@ -36,38 +64,7 @@ export default class App extends Component {
         });
         if (add) {
           this.addToMyPlants(obj);
-          let {
-            numESpring,
-            numLSpring,
-            numSummer,
-            numFall
-          } = this.state;
-          switch (obj.bloom_time) {
-            case 'Early Spring':
-              this.setState({
-                numESpring: numESpring+=1,
-              });
-              break;
-            case 'Late Spring':
-              this.setState({
-                numLSpring: numLSpring+=1,
-              });
-              console.log(this.state.numLSpring)
-              break;
-            case 'Summer':
-              this.setState({
-                numSummer: numSummer+=1,
-              });
-              break;
-            case 'Fall':
-              this.setState({
-                numFall: numFall+=1,
-              });
-              break;
-            default: 
-              console.log("No Case Satisfied, Check Data")
-          }
-        }
+        };
       }).catch((err) => {
         toast.error(err)
       });
@@ -79,33 +76,34 @@ export default class App extends Component {
       this.setState({
         myPlantsList:res.data
       })
+      let {numESpring, numLSpring, numSummer, numFall} = this.state; 
+      switch (bloom_time) {
+        case 'Early Spring':
+          this.setState({
+            numESpring:numESpring-=1,
+          });
+          break;
+        case 'Late Spring':
+          this.setState({
+            numLSpring:numLSpring-=1,
+          });
+            break;
+        case 'Summer':
+          this.setState({
+            numSummer:numSummer-=1,
+          });
+          break;
+        case 'Fall':
+          this.setState({
+            numFall:numFall-=1,
+          });
+          break;
+        default:
+          console.log('No Case Satisfied, Check Data');
+          break;
+      }
     })
     .catch((err)=> {toast.error(err)})
-    let {numESpring, numLSpring, numSummer, numFall} = this.state; 
-    switch (bloom_time) {
-      case 'Early Spring':
-        this.setState({
-          numESpring:numESpring-=1,
-        });
-        break;
-      case 'Late Spring':
-        this.setState({
-          numLSpring:numLSpring-=1,
-        });
-          break;
-      case 'Summer':
-        this.setState({
-          numSummer:numSummer-=1,
-        });
-        break;
-      case 'Fall':
-        this.setState({
-          numFall:numFall-=1,
-        });
-        break;
-      default:
-        console.log('No Case Satisfied, Check Data')
-    }
   }
 
   render() {
