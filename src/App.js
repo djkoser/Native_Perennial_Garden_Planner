@@ -15,7 +15,6 @@ export default class App extends Component {
   }
 
   addToMyPlants = (obj) => {
-    console.log('addToMyPlants fired')
     if (this.state.myPlantsList.findIndex(plt=> plt.id===obj.id)===-1){
     axios.post('/api/lists',obj)
       .then((res) => {this.setState({myPlantsList:res.data})})
@@ -25,7 +24,6 @@ export default class App extends Component {
   };
 
   retrieveMyPlantsList = (add,obj) => {
-    console.log('retrieveMyPlantsList Fired')
     axios.get('/api/lists/true/false')
     .then((res)=> {
       this.setState({
@@ -38,7 +36,6 @@ export default class App extends Component {
   };
 
   removeFromMyPlants = (id) => {
-    console.log("removeFromMyPlants fired")
     axios.delete('/api/lists/'+id)
     .then((res)=> {
       this.setState({

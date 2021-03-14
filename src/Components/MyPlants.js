@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import AddedPlant from './AddedPlant';
 import axios from 'axios';
+import {ToastContainer,toast} from 'react-toastify';
 
 //Props from App.js - retrieveMyPlantsList removeFromMyPlants myPlantsList
 export default class MyPlants extends Component {
@@ -8,7 +9,10 @@ export default class MyPlants extends Component {
     super(props);
     this.state = {
       notesInput:"",
-      editToggle:false
+      editToggle:{
+        toggle:false,
+        id:0
+      }
     };
   }
 
@@ -16,33 +20,54 @@ export default class MyPlants extends Component {
     this.props.retrieveMyPlantsList()
   }
 
-  toggleEdit = () => {
-    console.log('toggle Edit fired')
-    if (this.state.editToggle === false){
+  toggleEdit = (id) => {
+    if (this.state.editToggle.toggle===false) {
+      let existingPlantInfo = this.props.myPlantsList.filter(plt=> plt.id===Number.parseInt(id) ? true : false)
       this.setState({
-        editToggle:true
+        editToggle:{
+          toggle:true,
+          id:id,
+          notesInput: existingPlantInfo.project_notes
+        }
       })
-    if (this.state.editToggle === true) {
+    } 
+    if (this.state.editToggle.toggle===true) {
+      let body = {"notesInput":this.state.notesInput}
+      axios.put(`/api/lists/${id}`, body)
+      .then(()=> this.props.retrieveMyPlantsList())
+      .catch(err=>toast.error(err));
       this.setState({
-        editToggle:false
-      })
-    }
-    }
-    axios.put('/api/lists/')
+        editToggle:{
+          toggle:false,
+          id:0
+        }
+      });
+    };
+  };
+
+  handleChange = (value) => {
+    this.setState({
+      notesInput:value
+    })
   }
 
   render() {
 
-    const {removeFromMyPlants, myPlantsList} = this.props
+    const {removeFromMyPlants, myPlantsList} = this.props;
+    const {notesInput,editToggle} = this.state;
 
     return (
       <div>
+        <ToastContainer/>
         <div>
           <AddedPlant 
           myPlantsList={myPlantsList}
           removeFromMyPlants={removeFromMyPlants}
           toggleEdit={this.toggleEdit}
-          bloomTime={'Early Spring'}/>
+          bloomTime={'Early Spring'}
+          editToggle={editToggle}
+          notesInput={notesInput}
+          handleChange={this.handleChange}/>
           
         </div>
         <div>
@@ -50,21 +75,30 @@ export default class MyPlants extends Component {
             myPlantsList={myPlantsList}
             removeFromMyPlants={removeFromMyPlants}
             toggleEdit={this.toggleEdit}
-            bloomTime={'Late Spring'}/>
+            bloomTime={'Late Spring'}
+            editToggle={this.state.editToggle}
+            notesInput={notesInput}
+            handleChange={this.handleChange}/>
         </div>
         <div>
             <AddedPlant 
             myPlantsList={myPlantsList}
             removeFromMyPlants={removeFromMyPlants}
             toggleEdit={this.toggleEdit}
-            bloomTime={'Summer'}/>
+            bloomTime={'Summer'}
+            editToggle={this.state.editToggle}
+            notesInput={notesInput}
+            handleChange={this.handleChange}/>
         </div>
         <div>
             <AddedPlant 
             myPlantsList={myPlantsList}
             removeFromMyPlants={removeFromMyPlants}
             toggleEdit={this.toggleEdit}
-            bloomTime={'Fall'}/>
+            bloomTime={'Fall'}
+            editToggle={this.state.editToggle}
+            notesInput={notesInput}
+            handleChange={this.handleChange}/>
         </div>
       </div>
     );

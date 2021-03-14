@@ -3,7 +3,6 @@ import PlantFigure from './PlantFigure';
 import axios from 'axios';
 import { toast, ToastContainer} from 'react-toastify';
 
-
 //Props from app.js -myPlantsList addToMyPlants
 export default class SearchBox extends Component {
   constructor (props) {
@@ -23,12 +22,10 @@ export default class SearchBox extends Component {
   };
 
   componentDidMount() {
-    console.log("searchBox remounted")
     this.filterPlants();
   }
 
   addNewPlant = (userAddedCount, commonName, botanical_name, moisture,sun,minHeight,maxHeight,bloom_time,src) => {
-    console.log('addNewPlant Fired')
     let newPlant = {
       id: userAddedCount+"userAdded", 
       common_name: commonName,
@@ -45,14 +42,11 @@ export default class SearchBox extends Component {
   }
 
   filterPlants = (botanicalName, commonName, sun, bloomTime, minHeight, maxHeight, moisture) => {
-    console.log("filterPlants Fired")
     if (!botanicalName && !commonName && !sun && !bloomTime && !minHeight && !maxHeight && !moisture) {
-      console.log('get full list')
       axios.get('/api/lists/false/true')
       .then((res)=> {this.setState({plantList:res.data})})
       .catch((err)=> {toast.error(err)})
     } else if (botanicalName ||commonName ||sun ||bloomTime ||minHeight ||maxHeight ||moisture) {
-      console.log('queryList')
       let query = '/api/lists/false/true?'; 
       if (botanicalName) {
         query+="botName="+encodeURI(botanicalName);
@@ -81,7 +75,6 @@ export default class SearchBox extends Component {
         if (maxHeight) {query+="&"};
         query+="moisture="+encodeURI(moisture);
       }
-        console.log('filterplants second')
         axios.get(query)
         .then((res)=> {
           this.setState({plantList:res.data})})
@@ -90,7 +83,6 @@ export default class SearchBox extends Component {
   };
 
   clearSearch = () => {
-    console.log('clear Search fired')
     this.setState({
       botanicalName:"", 
       commonName:"",
@@ -104,7 +96,6 @@ export default class SearchBox extends Component {
   }
     
   handleChange = (value, key) => {
-    console.log("handleChange fired")
     this.setState({
       [key]: value
     })

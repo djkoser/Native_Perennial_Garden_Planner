@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from 'react';
 // plantList addToMyPlants
 export default function PlantFigure (props) {

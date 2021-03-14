@@ -49,41 +49,26 @@ module.exports = {
   },
   read: (req,res)=> {
     if (req.params.myList==="true" && req.params.mainList==="false") {
-      console.log('myList')
       res.status(200).send(myList);
     };
     if (req.params.mainList==="true" && req.params.myList==="false") {
-      console.log('main list')
       let result = [...masterPlantList]; 
       if (req.query.botName) {
-        console.log("botname")
-        console.log(req.query.botName)
         result = [...filterText(result,req,"botName","botanical_name")]; 
       };
       if (req.query.comName) {
-        console.log("comName")
-        console.log(req.query.comName)
         result = [...filterText(result,req,"comName","common_name")];
       };
       if (req.query.sun) {
-        console.log("sun")
-        console.log(req.query.sun)
         result = [...matchText(result,req,"sun","sun")];
       };
       if (req.query.blmTime) {
-        console.log("blmTime")
-        console.log(req.query.blmTime)
         result = [...matchText(result,req,"blmTime","bloom_time")];
       };
       if (req.query.maxHeight || req.query.minHeight) {
-        console.log("max/min height")
-        console.log(req.query.maxHeight)
-        console.log(req.query.minHeight)
         result = [...between(result,req)]; 
       };
       if (req.query.moisture) {
-        console.log("moisture")
-        console.log(req.query.moisture)
         result = [...matchText(result,req,"moisture","moisture")];
       };
       res.status(200).send(result);

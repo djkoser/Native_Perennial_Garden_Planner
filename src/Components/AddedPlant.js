@@ -1,9 +1,10 @@
+// @ts-nocheck
 import React from 'react';
 
-//Props = myPlantsList, removeFromMyPlants, toggleEdit, bloomTime
+//Props = myPlantsList removeFromMyPlants toggleEdit bloomTime editToggle notesInput handleChange
 
 export default function AddedPlant (props) {
-  const {myPlantsList, removeFromMyPlants, toggleEdit, bloomTime} = props
+  const {myPlantsList, removeFromMyPlants, toggleEdit, bloomTime, editToggle, notesInput, handleChange} = props
 
   let list
   
@@ -11,9 +12,9 @@ export default function AddedPlant (props) {
     if (el.bloom_time===bloomTime) {
       return (
       <li key={'myPlant'+el.id}>
-      <img id={el.id} onClick={ev=> removeFromMyPlants(ev.target.id)} alt={`${el.botanical_name}, commonly known as ${el.common_name}.`} src={el.src} width='80px'/>
-      <span id={el.id} onClick={ev=> removeFromMyPlants(ev.target.id)}>Common Name:{el.common_name}, Botanical Name:{el.botanical_name}, Moisture:{el.moisture}, Sun:{el.sun}, Height:{el.height}, Bloom Time:{el.bloom_time}, Notes: {el.notes}</span>
-      <button onClick={toggleEdit}>Add Notes</button>
+      <img className={el.id} onClick={ev=> removeFromMyPlants(ev.target.className)} alt={`${el.botanical_name}, commonly known as ${el.common_name}.`} src={el.src} width='80px'/>
+      <span className={el.id} onClick={ev=> removeFromMyPlants(ev.target.className)}>Common Name:{el.common_name}, Botanical Name:{el.botanical_name}, Moisture:{el.moisture}, Sun:{el.sun}, Height:{el.height}, Bloom Time:{el.bloom_time}, Notes: {editToggle.toggle && Number.parseInt(editToggle.id)===el.id ? (<textarea onChange={ev=> handleChange(ev.target.value)} value={notesInput}></textarea>) : el.project_notes}</span>
+      <button className={el.id} onClick={ev=>toggleEdit(ev.target.className)}>Add Notes</button>
       </li>
       )} else {return null}
     })
