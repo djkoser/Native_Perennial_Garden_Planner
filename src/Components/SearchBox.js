@@ -43,11 +43,11 @@ export default class SearchBox extends Component {
 
   filterPlants = (botanicalName, commonName, sun, bloomTime, minHeight, maxHeight, moisture) => {
     if (!botanicalName && !commonName && !sun && !bloomTime && !minHeight && !maxHeight && !moisture) {
-      axios.get('/api/lists/false/true')
+      axios.get('/api/lists/false/true/false')
       .then((res)=> {this.setState({plantList:res.data})})
       .catch((err)=> {toast.error(err)})
     } else if (botanicalName ||commonName ||sun ||bloomTime ||minHeight ||maxHeight ||moisture) {
-      let query = '/api/lists/false/true?'; 
+      let query = '/api/lists/false/true/false?'; 
       if (botanicalName) {
         query+="botName="+encodeURI(botanicalName);
       }

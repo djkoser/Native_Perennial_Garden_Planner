@@ -1,5 +1,10 @@
 const masterPlantList = require('../../plantMasterList.json');
 const myList=[];
+let numESpring;
+let numLSpring;
+let numSummer;
+let numFall;
+
 
 //Add new items to myList, both user-created and existing
 // '/api/lists'
@@ -48,10 +53,10 @@ module.exports = {
     } else {res.status(406).send(myList);}; 
   },
   read: (req,res)=> {
-    if (req.params.myList==="true" && req.params.mainList==="false") {
+    if (req.params.myList==="true" && req.params.mainList==="false" && req.params.counter==='false') {
       res.status(200).send(myList);
     };
-    if (req.params.mainList==="true" && req.params.myList==="false") {
+    if (req.params.mainList==="true" && req.params.myList==="false" && req.params.counter==='false') {
       let result = [...masterPlantList]; 
       if (req.query.botName) {
         result = [...filterText(result,req,"botName","botanical_name")]; 
@@ -73,16 +78,50 @@ module.exports = {
       };
       res.status(200).send(result);
 
-    } else if (req.params.myList === req.params.mainList) {
+    } else if (req.params.myList === req.params.mainList && req.params.counter==='false') {
       res.status(200).send(masterPlantList);
+    } else if (req.params.counter==='true') {
+      res.status(200).send({
+        numESpring:Number.parseInt(numESpring),
+        numLSpring:Number.parseInt(numLSpring),
+        numSummer: Number.parseInt(numSummer),
+        numFall: Number.parseInt(numFall)
+      });
     }
   },
-  update: (req,res)=> {
+  patch: (req, res) => {
     if (req.params.myKey) {
-      myList.forEach((plt)=> plt.id===Number.parseInt(req.params.myKey) ? plt.project_notes = req.body.notesInput : null);
+      console.log(req.body)
+      myList.forEach((plt) => plt.id === Number.parseInt(req.params.myKey) ? plt.project_notes = req.body.project_notes : null);
       res.status(200).send(myList);
-    } else {res.status(406).send(myList);}; 
+    } else if (!req.params.myKey) {
+      res.status(406).send(myList)
+    };
   },
+  put: (req,res)=> {
+    switch (req.params.counterName) {
+      case 'numESpring':
+        numESpring=req.body.count;
+        res.status(200).send(`${numESpring}`)
+        break
+      case "numLSpring":
+        numLSpring=req.body.count;
+        res.status(200).send(`${numLSpring}`)
+        break
+      case "numSummer":
+        numSummer=req.body.count; 
+        res.status(200).send(`${numSummer}`)
+        break
+      case "numFall":
+        numFall=req.body.count;
+        res.status(200).send(`${numFall}`)
+        break
+      default:
+        console.log('test')
+        res.status(406).send("Invalid List Name")
+        break
+      }
+    },
   delete: (req,res)=> {
     if (req.params.key) {
       let ind = myList.findIndex(plt=> plt.id===Number.parseInt(req.params.key) ? true : false);
