@@ -71,7 +71,6 @@ module.exports = {
         result = [...between(result,req)]; 
       };
       if (req.query.moisture) {
-        console.log(req.query.moisture)
         result = [...matchText(result,req,"moisture","moisture")];
       };
       res.status(200).send(result);
@@ -114,7 +113,6 @@ module.exports = {
         res.status(200).send(`${numFall}`)
         break
       default:
-        console.log('test')
         res.status(406).send("Invalid List Name")
         break
       }

@@ -102,7 +102,6 @@ export default class SearchBox extends Component {
     })
   }
 
-
   render() {
 
     const {botanicalName, commonName, sun, bloomTime, minHeight, maxHeight, moisture, src, plantList, userAddedCount} = this.state

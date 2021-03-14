@@ -21,7 +21,6 @@ export default class MyPlants extends Component {
   }
 
   toggleEdit = (id) => {
-    console.log(typeof id);
     if (this.state.editToggle.toggle===false) {
       let existingPlantInfo = this.props.myPlantsList.filter(plt=> plt.id.toString()===id ? true : false );
       existingPlantInfo = existingPlantInfo[0].project_notes;
