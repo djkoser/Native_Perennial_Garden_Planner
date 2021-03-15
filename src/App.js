@@ -18,6 +18,11 @@ export default class App extends Component {
     };
   }
 
+  listCounter = (arr,countString) => {
+    return arr.reduce((acc,plt) =>plt.bloom_time===countString ? acc+=1 : 0, 0)
+  };
+
+
   addToMyPlants = (obj) => {
     if (this.state.myPlantsList.findIndex(plt => plt.id === obj.id) === -1 && obj.bloom_time) {
       axios.post('/api/lists', obj)
@@ -26,15 +31,12 @@ export default class App extends Component {
             myPlantsList: res.data
           })
           let {
-            numESpring,
-            numLSpring,
-            numSummer,
-            numFall
+            myPlantsList,
           } = this.state;
           switch (obj.bloom_time) {
             case 'Early Spring':
               axios.put('/api/numESpring', {
-                  "count": numESpring += 1
+                  "count": this.listCounter(myPlantsList,"Early Spring")
                 })
                 .then(res => this.setState({
                   numESpring: Number.parseInt(res.data)
@@ -43,7 +45,7 @@ export default class App extends Component {
               break;
             case 'Late Spring':
               axios.put('/api/numLSpring', {
-                  "count": numLSpring += 1
+                  "count": this.listCounter(myPlantsList,"Late Spring")
                 })
                 .then(res => this.setState({
                   numLSpring: Number.parseInt(res.data)
@@ -52,7 +54,7 @@ export default class App extends Component {
               break;
             case 'Summer':
               axios.put('/api/numSummer', {
-                  "count": numSummer += 1
+                  "count": this.listCounter(myPlantsList,"Summer")
                 })
                 .then(res => this.setState({
                   numSummer: Number.parseInt(res.data)
@@ -61,7 +63,7 @@ export default class App extends Component {
               break;
             case 'Fall':
               axios.put('/api/numFall', {
-                  "count": numFall += 1
+                  "count": this.listCounter(myPlantsList,"Fall")
                 })
                 .then(res => this.setState({
                   numFall: Number.parseInt(res.data)
@@ -107,15 +109,12 @@ export default class App extends Component {
           myPlantsList: res.data
         })
         let {
-          numESpring,
-          numLSpring,
-          numSummer,
-          numFall
+          myPlantsList,
         } = this.state;
         switch (bloom_time) {
           case 'Early Spring':
             axios.put('/api/numESpring', {
-                "count": numESpring -= 1
+                "count": this.listCounter(myPlantsList,"Early Spring")
               })
               .then(res => this.setState({
                 numESpring: Number.parseInt(res.data)
@@ -124,7 +123,7 @@ export default class App extends Component {
             break;
           case 'Late Spring':
             axios.put('/api/numLSpring', {
-                "count": numLSpring -= 1
+                "count": this.listCounter(myPlantsList,"Late Spring")
               })
               .then(res => this.setState({
                 numLSpring: Number.parseInt(res.data)
@@ -133,7 +132,7 @@ export default class App extends Component {
             break;
           case 'Summer':
             axios.put('/api/numSummer', {
-                "count": numSummer -= 1
+                "count": this.listCounter(myPlantsList,"Summer")
               })
               .then(res => this.setState({
                 numSummer: Number.parseInt(res.data)
@@ -142,7 +141,7 @@ export default class App extends Component {
             break;
           case 'Fall':
             axios.put('/api/numFall', {
-                "count": numFall -= 1
+                "count": this.listCounter(myPlantsList,"Fall")
               })
               .then(res => this.setState({
                 numFall: Number.parseInt(res.data)
