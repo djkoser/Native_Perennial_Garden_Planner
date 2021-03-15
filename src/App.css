@@ -1,17 +1,14 @@
+.toPrint {
+  display:none;
+}
 header, main, form, .App {
   display:flex;
 } 
 
-.App, header, aside {
+.App, aside {
   justify-content:center;
-}
-
-.App, header, aside {
   align-items:center;
-}
-
-.App, aside{
-flex-direction: column; 
+  flex-direction: column; 
 }
 
 .App {
@@ -19,16 +16,24 @@ flex-direction: column;
 }
 
 header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height:75px;
   width:60vw;
   background-color: #70CF97;
-
   color:rgb(255, 255, 255);
-
   margin-bottom: 15px;
   margin-top: 15px;
   margin-right: 35vw;
   box-shadow: 5px 5px 3px 0px rgba(0, 0, 0, 0.377);
+}
+
+#printButton {
+  position: fixed;
+  right: 40px;
+  top: 10px;
+  font-size: 14pt;
 }
 
 h1 {
@@ -64,6 +69,7 @@ label {
 .searchButton {
   font-size:13pt;
   height:35px;
+
 }
 .figureBox {
   width: 60vw;
@@ -87,9 +93,9 @@ figure {
 aside {
   position: fixed;
   width: 33.5vw;
-  height:95vh;
+  height:90vh;
   right:2vw;
-  top:15px;
+  top:50px;
   border:solid 5pt #219653;
   display:inline-flex; 
   padding-bottom:15px;
@@ -134,4 +140,81 @@ img:hover {
 }
 li>img:hover {
   border:solid thick red; 
+}
+
+/* Print My Plants List With Comments */
+
+@media print {
+  header,.Toastify,.searchResults, button {
+    display:none; 
+  }
+  .toPrint {
+    display:inline; 
+  }
+  h1 {
+    font-size:20pt;
+    margin:0px;
+  }
+  
+  aside {
+    position:absolute;
+    top: 0px;
+    left:0px;
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items:center;
+    width: 8.5in;
+    height:fit-content;
+    max-height: fit-content;
+    padding:0.5in;
+    margin: 0in;
+    border: none;
+  }
+  section {
+    display:block;
+    height: fit-content;
+    width: 7.5in;
+    margin-top: 15px;
+    border: grey dotted thin;
+    padding:2px;
+    background-color: white;
+    overflow:unset;
+  }
+  ol, li {
+    display:inline-block;
+    text-align: left;
+  }
+  span {
+    display:inline;
+  }
+  br {
+    display:block;
+  }
+  h2 {
+    display:inline-block; 
+    width:7.5in;
+    height:20pt;
+    font-size:13pt;
+    font-weight: normal;
+    position:fixed;
+    text-align: left;
+    margin:0px;
+    padding: 5px;
+    background-color: transparent;
+  }
+  #eSpringH, #lSpringH, #summerH, #fallH {
+    position: static;
+  }
+  strong {
+    display:inline;
+  }
+  img {
+    margin-top: 5px;
+    margin-right: 10px;
+    float:left;
+    height:0.5in;
+    width: auto;
+
+  } 
 }

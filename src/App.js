@@ -165,18 +165,18 @@ export default class App extends Component {
         <Header/>
       <main>
         <SearchBox 
-        myPlantsList={myPlantsList}
-        addToMyPlants={this.retrieveMyPlantsList}
+          myPlantsList={myPlantsList}
+          addToMyPlants={this.retrieveMyPlantsList}
         />
         <MyPlants  
-        retrieveMyPlantsList={this.retrieveMyPlantsList} 
-        removeFromMyPlants={this.removeFromMyPlants}
-        myPlantsList={myPlantsList}
-        numESpring={numESpring}
-        numLSpring={numLSpring}
-        numSummer={numSummer}
-        numFall={numFall}
-        setParentMyPlantsList={this.setParentMyPlantsList}
+          retrieveMyPlantsList={this.retrieveMyPlantsList} 
+          removeFromMyPlants={this.removeFromMyPlants}
+          myPlantsList={myPlantsList}
+          numESpring={numESpring}
+          numLSpring={numLSpring}
+          numSummer={numSummer}
+          numFall={numFall}
+          setParentMyPlantsList={this.setParentMyPlantsList}
         />
       </main>
       </div>

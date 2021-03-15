@@ -60,8 +60,9 @@ export default class MyPlants extends Component {
 
     return (
       <aside>
+        <h1 className="toPrint ">Project Notes</h1>
         <ToastContainer/>
-        <section><h2>Early Spring-<strong>{numESpring}</strong> in List</h2>
+        <section><h2 id='eSpringH'>Early Spring-<strong>{numESpring}</strong> in List</h2>
         <br/>
           <AddedPlant 
           myPlantsList={myPlantsList}
@@ -72,7 +73,7 @@ export default class MyPlants extends Component {
           notesInput={notesInput}
           handleChange={this.handleChange}/>
         </section>
-        <section><h2>Late Spring-<strong>{numLSpring}</strong> in List</h2>
+        <section><h2 id='lSpringH'>Late Spring-<strong>{numLSpring}</strong> in List</h2>
         <br/>
           <AddedPlant 
           myPlantsList={myPlantsList}
@@ -83,7 +84,7 @@ export default class MyPlants extends Component {
           notesInput={notesInput}
           handleChange={this.handleChange}/>
         </section>
-        <section><h2>Summer-<strong>{numSummer}</strong> in List</h2>
+        <section><h2 id='summerH'>Summer-<strong>{numSummer}</strong> in List</h2>
         <br/>
           <AddedPlant 
           myPlantsList={myPlantsList}
@@ -94,7 +95,7 @@ export default class MyPlants extends Component {
           notesInput={notesInput}
           handleChange={this.handleChange}/>
         </section>
-        <section><h2>Fall-<strong>{numFall}</strong> in List</h2>
+        <section><h2 id='fallH'>Fall-<strong>{numFall}</strong> in List</h2>
           <br/>
             <AddedPlant 
             myPlantsList={myPlantsList}
@@ -105,6 +106,12 @@ export default class MyPlants extends Component {
             notesInput={notesInput}
             handleChange={this.handleChange}/>
         </section>
+        <div className='toPrint'>
+          End of List
+          <br/>
+          <br/>
+          <br/>
+        </div>
       </aside>
     );
   };
