@@ -61,7 +61,8 @@ export default class MyPlants extends Component {
     return (
       <aside>
         <ToastContainer/>
-        <section>Early Spring-<strong>{numESpring}</strong> in List
+        <section><h2>Early Spring-<strong>{numESpring}</strong> in List</h2>
+        <br/>
           <AddedPlant 
           myPlantsList={myPlantsList}
           removeFromMyPlants={removeFromMyPlants}
@@ -70,29 +71,31 @@ export default class MyPlants extends Component {
           editToggle={editToggle}
           notesInput={notesInput}
           handleChange={this.handleChange}/>
-          
         </section>
-        <section>Late Spring-<strong>{numLSpring}</strong> in List
-            <AddedPlant 
-            myPlantsList={myPlantsList}
-            removeFromMyPlants={removeFromMyPlants}
-            toggleEdit={this.toggleEdit}
-            bloomTime={'Late Spring'}
-            editToggle={this.state.editToggle}
-            notesInput={notesInput}
-            handleChange={this.handleChange}/>
+        <section><h2>Late Spring-<strong>{numLSpring}</strong> in List</h2>
+        <br/>
+          <AddedPlant 
+          myPlantsList={myPlantsList}
+          removeFromMyPlants={removeFromMyPlants}
+          toggleEdit={this.toggleEdit}
+          bloomTime={'Late Spring'}
+          editToggle={this.state.editToggle}
+          notesInput={notesInput}
+          handleChange={this.handleChange}/>
         </section>
-        <section>Summer-<strong>{numSummer}</strong> in List
-            <AddedPlant 
-            myPlantsList={myPlantsList}
-            removeFromMyPlants={removeFromMyPlants}
-            toggleEdit={this.toggleEdit}
-            bloomTime={'Summer'}
-            editToggle={this.state.editToggle}
-            notesInput={notesInput}
-            handleChange={this.handleChange}/>
+        <section><h2>Summer-<strong>{numSummer}</strong> in List</h2>
+        <br/>
+          <AddedPlant 
+          myPlantsList={myPlantsList}
+          removeFromMyPlants={removeFromMyPlants}
+          toggleEdit={this.toggleEdit}
+          bloomTime={'Summer'}
+          editToggle={this.state.editToggle}
+          notesInput={notesInput}
+          handleChange={this.handleChange}/>
         </section>
-        <section>Fall-<strong>{numFall}</strong> in List
+        <section><h2>Fall-<strong>{numFall}</strong> in List</h2>
+          <br/>
             <AddedPlant 
             myPlantsList={myPlantsList}
             removeFromMyPlants={removeFromMyPlants}

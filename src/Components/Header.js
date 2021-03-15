@@ -3,7 +3,7 @@ import React from 'react';
 export default function Header () {
   return (
     <header>
-      Native Perennial Garden Plant Selector
+      <h1>Native Perennial Garden Planner</h1>
     </header>
 
   );

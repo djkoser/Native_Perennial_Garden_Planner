@@ -1,39 +1,56 @@
+header, main, form, .App {
+  display:flex;
+} 
+
+.App, header, aside {
+  justify-content:center;
+}
+
+.App, header, aside {
+  align-items:center;
+}
+
+.App, aside{
+flex-direction: column; 
+}
+
 .App {
   width: 100vw;
-  display:flex;
-  justify-content: center; 
-  align-items: center;
-  flex-direction: column;
 }
+
 header {
-  display:flex;
-  justify-content: center; 
-  align-items: center;
   height:75px;
   width:60vw;
   background-color: #70CF97;
-  font-size:xx-large;
+
   color:rgb(255, 255, 255);
-  font-weight: 800;
+
   margin-bottom: 15px;
   margin-top: 15px;
-  margin-right: 25vw;
+  margin-right: 35vw;
   box-shadow: 5px 5px 3px 0px rgba(0, 0, 0, 0.377);
 }
-main {
-  width:85vw;
-  display:flex;
-  
+
+h1 {
+  font-size:xx-large;
+  font-weight: 800;
 }
+
+main {
+  width:95vw;
+}
+
 form {
   width:60vw;
-  display:flex;
   flex-wrap: wrap;
   align-content:space-around;
   justify-content: flex-start;
   padding: 20px;
   background-color: #E1F5EA;
   margin-bottom: 20px;
+  position: sticky;
+  top: 0px;
+
 }
 label, input, select,.searchButton{
   font-size:14pt;
@@ -69,25 +86,31 @@ figure {
 }
 aside {
   position: fixed;
-  width: 25vw;
+  width: 33.5vw;
   height:95vh;
-  right:6vw;
+  right:2vw;
   top:15px;
   border:solid 5pt #219653;
-  display:inline-flex;
-  flex-direction: column; 
-  justify-content: center;
-  align-items:center;
+  display:inline-flex; 
   padding-bottom:15px;
 }
 section {
   height:21vh;
-  width:23vw;
+  width:30vw;
   background-color: #E1F5EA;
   margin-top: 15px;
-  text-align: center;
-  font-size:12pt;
   overflow:scroll;
+}
+h2 {
+  width: 30vw;
+  height:20pt;
+  font-size:13pt;
+  font-weight: normal;
+  position:fixed;
+  text-align: center;
+  background-color: #E1F5EA;
+  margin:0px;
+  padding: 5px;
 }
 ol, li {
   text-align: left;
@@ -111,4 +134,3 @@ img:hover {
 li>img:hover {
   border:solid thick red; 
 }
-
