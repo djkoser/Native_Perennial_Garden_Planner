@@ -19,7 +19,7 @@ export default class App extends Component {
   }
 
   listCounter = (arr,countString) => {
-    return arr.reduce((acc,plt) =>plt.bloom_time===countString ? acc+=1 : 0, 0)
+    return arr.reduce((acc,plt) =>plt.bloom_time===countString ? acc+=1 : acc, 0)
   };
 
 
@@ -39,7 +39,7 @@ export default class App extends Component {
                   "count": this.listCounter(myPlantsList,"Early Spring")
                 })
                 .then(res => this.setState({
-                  numESpring: Number.parseInt(res.data)
+                  numESpring: res.data
                 }))
                 .catch(err => toast.error(err));
               break;
@@ -48,7 +48,7 @@ export default class App extends Component {
                   "count": this.listCounter(myPlantsList,"Late Spring")
                 })
                 .then(res => this.setState({
-                  numLSpring: Number.parseInt(res.data)
+                  numLSpring: res.data
                 }))
                 .catch(err => toast.error(err));
               break;
@@ -57,7 +57,7 @@ export default class App extends Component {
                   "count": this.listCounter(myPlantsList,"Summer")
                 })
                 .then(res => this.setState({
-                  numSummer: Number.parseInt(res.data)
+                  numSummer: res.data
                 }))
                 .catch(err => toast.error(err));
               break;
@@ -66,7 +66,7 @@ export default class App extends Component {
                   "count": this.listCounter(myPlantsList,"Fall")
                 })
                 .then(res => this.setState({
-                  numFall: Number.parseInt(res.data)
+                  numFall: res.data
                 }))
                 .catch(err => toast.error(err));
               break;
@@ -117,7 +117,7 @@ export default class App extends Component {
                 "count": this.listCounter(myPlantsList,"Early Spring")
               })
               .then(res => this.setState({
-                numESpring: Number.parseInt(res.data)
+                numESpring: res.data
               }))
               .catch(err => toast.error(err));
             break;
@@ -126,7 +126,7 @@ export default class App extends Component {
                 "count": this.listCounter(myPlantsList,"Late Spring")
               })
               .then(res => this.setState({
-                numLSpring: Number.parseInt(res.data)
+                numLSpring: res.data
               }))
               .catch(err => toast.error(err));
             break;
@@ -135,7 +135,7 @@ export default class App extends Component {
                 "count": this.listCounter(myPlantsList,"Summer")
               })
               .then(res => this.setState({
-                numSummer: Number.parseInt(res.data)
+                numSummer: res.data
               }))
               .catch(err => toast.error(err));
             break;
@@ -144,7 +144,7 @@ export default class App extends Component {
                 "count": this.listCounter(myPlantsList,"Fall")
               })
               .then(res => this.setState({
-                numFall: Number.parseInt(res.data)
+                numFall: res.data
               }))
               .catch(err => toast.error(err));
             break;
