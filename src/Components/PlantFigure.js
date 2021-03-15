@@ -7,7 +7,7 @@ export default function PlantFigure (props) {
 
     figs = plantList.map((plt) => {
       return (
-        <figure key={'mainList'+plt.id}>
+        <figure key={`mainList${plt.id}`}>
           <img className={"figs"} width='150px' onClick={()=>addToMyPlants(true, plt)} id={plt.id} src={plt.src} alt={`${plt.botanical_name}, commonly known as ${plt.common_name}.`}/>
           <figcaption><strong>Common Name:</strong> 
           <br/>

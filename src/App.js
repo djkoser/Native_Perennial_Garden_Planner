@@ -25,53 +25,53 @@ export default class App extends Component {
           this.setState({
             myPlantsList: res.data
           })
-          axios.get('/api/lists/false/false/true')
-            .then((res) => {
-              let {numESpring,numLSpring, numSummer,numFall} = res.data
-              switch (obj.bloom_time) {
-                case 'Early Spring':
-                  axios.put('/api/numESpring', {
-                      "count": numESpring += 1
-                    })
-                    .then(res => this.setState({
-                      numESpring: Number.parseInt(res.data)
-                    }))
-                    .catch(err => toast.error(err));
-                  break;
-                case 'Late Spring':
-                  axios.put('/api/numLSpring', {
-                      "count": numLSpring += 1
-                    })
-                    .then(res => this.setState({
-                      numLSpring: Number.parseInt(res.data)
-                    }))
-                    .catch(err => toast.error(err));
-                  break;
-                case 'Summer':
-                  axios.put('/api/numSummer', {
-                      "count": numSummer += 1
-                    })
-                    .then(res => this.setState({
-                      numSummer: Number.parseInt(res.data)
-                    }))
-                    .catch(err => toast.error(err));
-                  break;
-                case 'Fall':
-                  axios.put('/api/numFall', {
-                      "count": numFall += 1
-                    })
-                    .then(res => this.setState({
-                      numFall: Number.parseInt(res.data)
-                    }))
-                    .catch(err => toast.error(err));
-                  break;
-                default:
-                  console.log("No Case Satisfied, Check Data")
-                  break;
-              }
-            }).catch((err) => {
-              toast.error(err)
-            })
+          let {
+            numESpring,
+            numLSpring,
+            numSummer,
+            numFall
+          } = this.state;
+          switch (obj.bloom_time) {
+            case 'Early Spring':
+              axios.put('/api/numESpring', {
+                  "count": numESpring += 1
+                })
+                .then(res => this.setState({
+                  numESpring: Number.parseInt(res.data)
+                }))
+                .catch(err => toast.error(err));
+              break;
+            case 'Late Spring':
+              axios.put('/api/numLSpring', {
+                  "count": numLSpring += 1
+                })
+                .then(res => this.setState({
+                  numLSpring: Number.parseInt(res.data)
+                }))
+                .catch(err => toast.error(err));
+              break;
+            case 'Summer':
+              axios.put('/api/numSummer', {
+                  "count": numSummer += 1
+                })
+                .then(res => this.setState({
+                  numSummer: Number.parseInt(res.data)
+                }))
+                .catch(err => toast.error(err));
+              break;
+            case 'Fall':
+              axios.put('/api/numFall', {
+                  "count": numFall += 1
+                })
+                .then(res => this.setState({
+                  numFall: Number.parseInt(res.data)
+                }))
+                .catch(err => toast.error(err));
+              break;
+            default:
+              console.log("No Case Satisfied, Check Data")
+              break;
+          }
         }).catch((err) => {
           toast.error(err)
         })
@@ -101,14 +101,17 @@ export default class App extends Component {
   }
 
   removeFromMyPlants = (id, bloom_time) => {
-    axios.delete('/api/lists/'+id)
-    .then((res)=> {
-      this.setState({
-        myPlantsList:res.data
-      })
-      axios.get('/api/lists/false/false/true')
+    axios.delete(`/api/lists/${id}`)
       .then((res) => {
-        let {numESpring,numLSpring, numSummer,numFall} = res.data
+        this.setState({
+          myPlantsList: res.data
+        })
+        let {
+          numESpring,
+          numLSpring,
+          numSummer,
+          numFall
+        } = this.state;
         switch (bloom_time) {
           case 'Early Spring':
             axios.put('/api/numESpring', {
@@ -153,8 +156,6 @@ export default class App extends Component {
       }).catch((err) => {
         toast.error(err)
       })
-    })
-    .catch((err)=> {toast.error(err)})
   }
 
   render() {
