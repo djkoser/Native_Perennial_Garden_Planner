@@ -116,6 +116,7 @@ ol, li {
   text-align: left;
 }
 img {
+  margin-top: 5px;
   float:left;
 }
 
