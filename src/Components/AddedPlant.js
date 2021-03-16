@@ -15,6 +15,7 @@ export default function AddedPlant (props) {
       <span>Common Name:{el.common_name}, Botanical Name:{el.botanical_name}, Moisture:{el.moisture}, Sun:{el.sun}, Height:{el.height}, Bloom Time:{el.bloom_time} <button className={el.id} onClick={ev=>toggleEdit(ev.target.className)}>Add Notes</button>{el.project_notes ? (<span>Notes: </span>) : null}{editToggle.toggle && editToggle.id ===el.id.toString() ? (<textarea onChange={ev=> handleChange(ev.target.value)} value={notesInput}></textarea>) : el.project_notes} 
       </span>
       <br/>
+      <br/>
       </li>
       )} else {return null}
     })
