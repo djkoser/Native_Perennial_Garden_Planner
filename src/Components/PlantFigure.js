@@ -14,7 +14,7 @@ export default function PlantFigure (props) {
           {plt.common_name}</figcaption>
           <figcaption><strong>Botanical Name: </strong> 
           <br/>
-          {plt.botanical_name}
+          <em>{plt.botanical_name}</em>
           </figcaption>
           <figcaption><strong>Moisture Req: </strong> 
           {plt.moisture}
