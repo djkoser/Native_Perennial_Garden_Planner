@@ -80,7 +80,7 @@ export default class MyPlants extends Component {
           removeFromMyPlants={removeFromMyPlants}
           toggleEdit={this.toggleEdit}
           bloomTime={'Late Spring'}
-          editToggle={this.state.editToggle}
+          editToggle={editToggle}
           notesInput={notesInput}
           handleChange={this.handleChange}/>
         </section>
@@ -91,7 +91,7 @@ export default class MyPlants extends Component {
           removeFromMyPlants={removeFromMyPlants}
           toggleEdit={this.toggleEdit}
           bloomTime={'Summer'}
-          editToggle={this.state.editToggle}
+          editToggle={editToggle}
           notesInput={notesInput}
           handleChange={this.handleChange}/>
         </section>
@@ -102,7 +102,7 @@ export default class MyPlants extends Component {
             removeFromMyPlants={removeFromMyPlants}
             toggleEdit={this.toggleEdit}
             bloomTime={'Fall'}
-            editToggle={this.state.editToggle}
+            editToggle={editToggle}
             notesInput={notesInput}
             handleChange={this.handleChange}/>
         </section>
